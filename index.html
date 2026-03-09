@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudo Visual - Carta aos Gálatas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        /* VISÃO GERAL */
+        .overview {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        .overview h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        .overview-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        .overview-item {
+            padding: 20px;
+            background: #f8f9ff;
+            border-left: 5px solid #764ba2;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .overview-item:hover {
+            transform: translateX(5px);
+        }
+
+        .overview-item strong {
+            color: #764ba2;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .overview-item p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* RESUMO GERAL */
+        .summary-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1s ease-out 0.3s both;
+            color: white;
+            text-align: center;
+        }
+
+        .summary-section h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .summary-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* SEÇÃO DE CAPÍTULOS */
+        .chapters-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 35px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        /* CARDS */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+            border-top: 5px solid #667eea;
+            animation: fadeIn 1s ease-out both;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.3s; border-top-color: #667eea; }
+        .card:nth-child(2) { animation-delay: 0.4s; border-top-color: #764ba2; }
+        .card:nth-child(3) { animation-delay: 0.5s; border-top-color: #f093fb; }
+        .card:nth-child(4) { animation-delay: 0.6s; border-top-color: #4facfe; }
+        .card:nth-child(5) { animation-delay: 0.7s; border-top-color: #43e97b; }
+        .card:nth-child(6) { animation-delay: 0.8s; border-top-color: #fa709a; }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-chapter {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #667eea;
+            font-size: 1.6em;
+            margin-bottom: 12px;
+        }
+
+        .card .tema {
+            background: #f0f0ff;
+            color: #764ba2;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .card .frase-chave {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 6px;
+            font-style: italic;
+            color: #333;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        /* FRUTO DO ESPÍRITO */
+        .fruit-list {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .fruit-list h5 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .fruit-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .fruit-item {
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            border: 2px solid #667eea;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        /* ENSINAMENTOS */
+        .teachings-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1s ease-out 0.7s both;
+        }
+
+        .teachings-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        .teachings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .teaching-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .teaching-item:hover {
+            transform: scale(1.05);
+        }
+
+        .teaching-item h4 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .teaching-item p {
+            font-size: 0.95em;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* APLICAÇÃO PRÁTICA */
+        .application-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1s ease-out 0.8s both;
+        }
+
+        .application-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        .application-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .application-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            border-left: 5px solid #764ba2;
+            transition: transform 0.3s ease;
+        }
+
+        .application-item:hover {
+            transform: translateX(5px);
+        }
+
+        .app-icon {
+            font-size: 2em;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .app-content h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .app-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+            }
+
+            .overview, .teachings-section, .application-section, .summary-section {
+                padding: 25px;
+            }
+
+            .chapters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .overview-content {
+                grid-template-columns: 1fr;
+            }
+
+            .fruit-items {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>⚔️ Batalha Bíblica</h1>
+            <p>Carta aos Gálatas</p>
+        </div>
+
+        <!-- VISÃO GERAL -->
+        <div class="overview">
+            <h2>Visão Geral da Carta</h2>
+            <div class="overview-content">
+                <div class="overview-item">
+                    <strong>📝 Autor</strong>
+                    <p>Apóstolo Paulo de Tarso, um dos principais líderes da Igreja Primitiva e autor de várias epístolas do Novo Testamento.</p>
+                </div>
+                <div class="overview-item">
+                    <strong>👥 Destinatários</strong>
+                    <p>As igrejas da região da Galácia (atual Turquia), comunidades cristãs que Paulo havia plantado durante suas viagens missionárias.</p>
+                </div>
+                <div class="overview-item">
+                    <strong>🎯 Tema Central</strong>
+                    <p>Defesa do verdadeiro evangelho e a salvação pela fé em Cristo, não pelas obras da Lei. Uma carta apaixonada contra o legalismo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESUMO GERAL -->
+        <div class="summary-section">
+            <h2>📖 Resumo Geral da Carta</h2>
+            <p>A carta ensina que a salvação é pela graça de Deus mediante a fé e que o cristão deve viver guiado pelo Espírito Santo. Paulo defende apaixonadamente o verdadeiro evangelho contra aqueles que tentam impor a Lei como meio de salvação.</p>
+        </div>
+
+        <!-- CAPÍTULOS -->
+        <div class="chapters-section">
+            <h2 class="section-title">Os Seis Capítulos</h2>
+            <div class="chapters-grid">
+                <!-- Capítulo 1 -->
+                <div class="card">
+                    <span class="card-chapter">Capítulo 1</span>
+                    <h3>O Verdadeiro Evangelho</h3>
+                    <div class="tema">Não existe outro evangelho</div>
+                    <p>Paulo de Tarso repreende os gálatas porque estavam abandonando o verdadeiro evangelho para seguir um evangelho diferente. Ele afirma que a mensagem que pregava veio por revelação de Cristo, não de homens. Paulo é enfático ao alertar sobre a importância de manter a pureza da mensagem evangélica.</p>
+                    <div class="frase-chave">"Quem anunciar outro evangelho seja anátema."</div>
+                </div>
+
+                <!-- Capítulo 2 -->
+                <div class="card">
+                    <span class="card-chapter">Capítulo 2</span>
+                    <h3>Justificação pela Fé</h3>
+                    <div class="tema">A salvação não vem pelas obras da Lei</div>
+                    <p>Paulo relata seu encontro com os líderes da igreja e conta quando confrontou Pedro por agir com hipocrisia ao se afastar dos gentios. Ele ensina que a justificação vem pela fé em Cristo, não pelas obras da Lei. Este capítulo é crucial para entender que a salvação é um dom gratuito de Deus, não algo conquistado por mérito próprio.</p>
+                    <div class="frase-chave">"O homem é justificado pela fé em Cristo e não pelas obras da Lei."</div>
+                </div>
+
+                <!-- Capítulo 3 -->
+                <div class="card">
+                    <span class="card-chapter">Capítulo 3</span>
+                    <h3>A Fé e a Promessa</h3>
+                    <div class="tema">A Lei não salva</div>
+                    <p>Paulo usa Abraão como exemplo para mostrar que a justificação sempre foi pela fé. A Lei veio depois e teve a função de conduzir as pessoas até Cristo. Ele demonstra que a promessa de Deus a Abraão é cumprida em Cristo, e que todos os que creem são filhos de Abraão e herdeiros da promessa.</p>
+                    <div class="frase-chave">"Em Cristo não há judeu nem grego, todos são um."</div>
+                </div>
+
+                <!-- Capítulo 4 -->
+                <div class="card">
+                    <span class="card-chapter">Capítulo 4</span>
+                    <h3>Filhos e Herdeiros</h3>
+                    <div class="tema">Filhos de Deus pela fé</div>
+                    <p>Antes de Cristo as pessoas viviam como escravas da Lei. Agora, pela fé, tornaram-se filhos de Deus e herdeiros da promessa. Paulo usa a comparação entre Sara e Agar para explicar a diferença entre a promessa de Deus (representada por Sara) e a escravidão da Lei (representada por Agar). Através de Cristo, todos recebem o direito de serem chamados filhos de Deus.</p>
+                    <div class="frase-chave">"Já não és escravo, mas filho."</div>
+                </div>
+
+                <!-- Capítulo 5 -->
+                <div class="card">
+                    <span class="card-chapter">Capítulo 5</span>
+                    <h3>Liberdade em Cristo</h3>
+                    <div class="tema">Liberdade cristã</div>
+                    <p>Cristo libertou os cristãos da escravidão da Lei, mas essa liberdade não deve ser usada para pecar, e sim para viver guiado pelo Espírito Santo. Paulo contrasta as obras da carne com o fruto do Espírito, mostrando que a verdadeira liberdade em Cristo resulta em uma vida transformada e frutífera, não em libertinagem.</p>
+                    <div class="fruit-list">
+                        <h5>🌟 O Fruto do Espírito:</h5>
+                        <div class="fruit-items">
+                            <div class="fruit-item">Amor</div>
+                            <div class="fruit-item">Alegria</div>
+                            <div class="fruit-item">Paz</div>
+                            <div class="fruit-item">Paciência</div>
+                            <div class="fruit-item">Benignidade</div>
+                            <div class="fruit-item">Bondade</div>
+                            <div class="fruit-item">Fidelidade</div>
+                            <div class="fruit-item">Mansidão</div>
+                            <div class="fruit-item">Domínio Próprio</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Capítulo 6 -->
+                <div class="card">
+                    <span class="card-chapter">Capítulo 6</span>
+                    <h3>Lei da Semeadura</h3>
+                    <div class="tema">Colher o que se planta</div>
+                    <p>Paulo ensina que cada pessoa colherá aquilo que semear. Também orienta os cristãos a ajudarem uns aos outros e a não se cansarem de fazer o bem. Este capítulo enfatiza a responsabilidade pessoal e a importância da comunidade cristã, mostrando que nossas ações têm consequências eternas.</p>
+                    <div class="frase-chave">"Quem semeia na carne colhe corrupção; quem semeia no Espírito colhe vida eterna."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRINCIPAIS ENSINAMENTOS -->
+        <div class="teachings-section">
+            <h2>Principais Ensinamentos da Carta</h2>
+            <div class="teachings-grid">
+                <div class="teaching-item">
+                    <h4>✨ O Verdadeiro Evangelho</h4>
+                    <p>A mensagem de salvação em Cristo é única e imutável. Qualquer desvio é uma distorção perigosa que afasta as pessoas da verdade.</p>
+                </div>
+                <div class="teaching-item">
+                    <h4>💎 Justificação pela Fé</h4>
+                    <p>A salvação não é conquistada por obras, mas recebida como dom gratuito pela fé em Jesus Cristo.</p>
+                </div>
+                <div class="teaching-item">
+                    <h4>🕊️ Liberdade em Cristo</h4>
+                    <p>Cristo nos libertou da escravidão da Lei. Somos chamados a viver em liberdade espiritual, não em legalismo ou escravidão.</p>
+                </div>
+                <div class="teaching-item">
+                    <h4>🤝 Promessa de Deus</h4>
+                    <p>A promessa feita a Abraão é cumprida em Cristo. Todos os que creem são herdeiros dessa promessa e filhos de Deus.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- APLICAÇÃO PRÁTICA -->
+        <div class="application-section">
+            <h2>Aplicação Prática na Vida Cristã Hoje</h2>
+            <div class="application-list">
+                <div class="application-item">
+                    <div class="app-icon">🎯</div>
+                    <div class="app-content">
+                        <h4>Rejeitar o Legalismo</h4>
+                        <p>Não coloque sua fé em regras humanas ou tradições. A verdadeira fé está em Cristo, não em práticas externas ou cumprimento de leis que prometem salvação.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <div class="app-icon">❤️</div>
+                    <div class="app-content">
+                        <h4>Viver pela Graça</h4>
+                        <p>Compreenda que você é salvo pela graça de Deus, não por seus méritos ou obras. Isso liberta você da culpa, do medo e da condenação, permitindo uma relação genuína com Deus.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <div class="app-icon">🌱</div>
+                    <div class="app-content">
+                        <h4>Crescimento Espiritual Genuíno</h4>
+                        <p>Seu crescimento espiritual vem da relação com Cristo, não da obediência a regras. Deixe o Espírito Santo guiar sua vida e transformar seu caráter.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <div class="app-icon">🤲</div>
+                    <div class="app-content">
+                        <h4>Unidade na Fé</h4>
+                        <p>Reconheça que todos os crentes em Cristo são iguais e um só corpo. Não há distinção de classe, raça, gênero ou origem em Cristo. Todos somos um.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <div class="app-icon">⚡</div>
+                    <div class="app-content">
+                        <h4>Fruto do Espírito</h4>
+                        <p>A verdadeira transformação cristã é evidenciada pelo fruto do Espírito: amor, alegria, paz, paciência, benignidade, bondade, fidelidade, mansidão e domínio próprio. Cultive essas virtudes em sua vida.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <div class="app-icon">🔥</div>
+                    <div class="app-content">
+                        <h4>Defenda a Verdade</h4>
+                        <p>Como Paulo, seja firme na defesa do verdadeiro evangelho. Não permita que falsas doutrinas ou legalismo se infiltrem em sua fé ou comunidade cristã.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <div class="app-icon">🌾</div>
+                    <div class="app-content">
+                        <h4>Lei da Semeadura</h4>
+                        <p>Lembre-se de que colherá o que semear. Invista em semear no Espírito através de boas obras, generosidade e amor ao próximo para colher vida eterna.</p>
+                    </div>
+                </div>
+                <div class="application-item">
+                    <div class="app-icon">🤝</div>
+                    <div class="app-content">
+                        <h4>Comunidade e Solidariedade</h4>
+                        <p>Ajude seus irmãos na fé e não se canse de fazer o bem. A vida cristã é vivida em comunidade, onde nos apoiamos mutuamente e compartilhamos as cargas uns dos outros.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>📖 Página de Estudo Bíblico - Carta aos Gálatas | Preparada para reflexão e aprendizado cristão profundo</p>
+        </div>
+    </div>
+</body>
+</html>
